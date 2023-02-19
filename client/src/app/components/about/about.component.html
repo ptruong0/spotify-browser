@@ -1,10 +1,17 @@
-<!--TODO: Define click callback to load about me information-->
-<button class="btn btn-light">Load info about me</button>
-<!--TODO: replace ??? to bind to name-->
-<h3>Logged in user: ???</h3>
-<!--TODO: bind img src's to profile_pic-->
-<img src="../../../assets/unknown.jpg">
-<p>
+<div class="d-flex flex-column align-items-center">
+	<!--TODO: Define click callback to load about me information-->
+	<button class="btn btn-light align-self-stretch" (click)="loadAbout()">Load info about me</button>
+	<!--TODO: replace ??? to bind to name-->
+	<h3>Logged in user: <span class="username">{{name}}</span></h3>
+	<!--TODO: bind img src's to profile_pic-->
+	<img [src]="profile_pic" class="rounded-pic profile-pic mb-2">
 	<!--TODO: bind link's href to profile_link-->
-	<a class="btn btn-light" target="_blank">Open profile on Spotify</a>	
-</p>
+	<!-- disable button before user info is loaded -->
+		<a class="btn btn-light align-self-stretch {{profile_link ? '' : 'disabled'}}" target="_blank" [href]="profile_link">Open profile on Spotify
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right pb-1" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+				<path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+			</svg>
+		</a>
+	
+</div>

@@ -1,3 +1,13 @@
 nav {
 	margin-bottom: 20px;
+	background-color: #1DB954;
+}
+
+.title {
+	color: #000000;
+}
+
+.login-btn {
+	color: #FFFFFF;
+	background-color: #000000;
 }

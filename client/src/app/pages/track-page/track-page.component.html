@@ -1,28 +1,57 @@
-<div class="row">
-	<div *ngIf="track" class="col-6">
-		<!--TODO: populate with track name-->
-		<h1>???</h1>
-		<p>
-			<!--TODO: link to album page, display album name-->
-			Track on <a>???</a>
-		</p>
-		<div>
-			<!--TODO: loop over track's artists-->
-			<p>
-				<!--TODO: link to artist page, display artist name-->
-				Artist: <a>???</a>
-			</p>
+<div *ngIf="track" class="mx-4">
+	<div class="d-flex justify-content-between align-items-center my-2">
+		<div class="d-flex justify-content-start align-items-center">
+			<img class="album-pic mr-4" [src]="track.album.imageURL">
+			<h1 class="track-name">{{track.name}}</h1>
 		</div>
 		<p>
-			<!--TODO: populate with track duration-->
-			Duration: ???
-		</p>
-		<p>
-			<!--TODO: link to track page on spotify, display track name-->
-			<a class="btn btn-light" role="button" target="_blank">Open ??? on Spotify</a>
+			<a class="btn btn-light" role="button" [href]="track.url" target="_blank">
+				Open on Spotify
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-box-arrow-up-right pb-1" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+					<path fill-rule="evenodd"
+						d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+				</svg>
+			</a>
 		</p>
 	</div>
-	<div *ngIf="audioFeatures" class="col-6">
+	<hr class="divider">
+
+	<div class="d-flex align-items-center my-2">
+		<h3 class="my-0 mr-4">Track on </h3>
+		<a [href]="'/album/' + track.album.id" class="btn mx-2">{{track.album.name}}</a>
+	</div>
+
+
+	<div class="d-flex align-items-center my-2">
+		<h3 class="mr-4 my-0">Artist{{track.artists.length > 1 ? 's' : ''}}</h3>
+		<div class="d-flex align-items-center my-0">
+			<span *ngFor="let artist of track.artists">
+				<a [href]="'/artist/' + artist.id" class="btn mx-2">{{artist.name}}</a>
+			</span>
+		</div>
+	</div>
+
+
+	<div class="d-flex align-items-center my-3">
+		<h3 class="my-0 mr-4">Duration </h3>
+		<span>{{track.durationStr}}</span>
+	</div>
+
+	<hr class="divider">
+
+	<div *ngIf="audioFeatures" class="my-2">
+		<h3>Audio Features</h3>
+
 		<!--TODO: loop over types of features and create a thermometer component for each-->
+		<app-thermometer *ngFor="let feature of audioFeatures" [feature]="feature"></app-thermometer>
 	</div>
+
+</div>
+
+
+<div *ngIf="!track">
+	<h3>Track not found.</h3>
 </div>

@@ -1,3 +1,13 @@
-img {
-	max-width: 400px;
+.profile-pic {
+  max-width: 8em;
+	max-height: 8em;
+}
+
+h3 {
+  color: #FFFFFF;
+}
+
+.username {
+  color: #1DB954;
+
 }

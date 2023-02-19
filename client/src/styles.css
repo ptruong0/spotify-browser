@@ -1,23 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-	background-color: var(--bs-gray-dark);
-	color: var(--bs-light);
-	font-family: 'Lato', sans-serif;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: 'Montserrat', 'Helvetica Nueue', 'Lato', sans-serif;
 }
 
 h1 {
 	font-weight: 900;
+	color: #1DB954;
 }
 
 h2, h3 {
 	font-weight: 700;
+	color: #1DB954;
 }
 
 button, .btn {
 	margin: 10px;
+	background-color: #1DB954;
+	color: #000000;
+	border: none;
+	font-weight: bold;
+}
+
+.btn:hover {
+	transform: scale(1.05);
+	transition: 0.3s ease-in-out;
 }
 
 a {
-	color: var(--bs-orange);
+	color: #1DB954;
+}
+
+a:hover {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.rounded-pic {
+	border-radius: 50%;
+}
+
+.divider {
+	background-color: #1DB954;
 }

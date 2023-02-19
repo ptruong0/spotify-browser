@@ -1,39 +1,52 @@
-<div *ngIf="artist" class="row">
-	<div class="col-6">
-		<!--TODO: populate with artist name-->
-		<h1></h1>
-		<!--TODO: populate with artist image URL-->
-		<img id="artistImg" src="../../../assets/unknown.jpg">
+<div *ngIf="artist" class="mx-4">
+	<div class="d-flex justify-content-between align-items-center my-4">
+		<div class="d-flex align-items-center">
+			<!--TODO: populate with artist image URL-->
+			<img id="artistImg" class="rounded-pic artist-pic mr-4" [src]="artist.imageURL">
+			<!--TODO: populate with artist name-->
+			<h1 class="artist-name">{{artist.name}}</h1>
+		</div>
 		<p>
 			<!--TODO: link to artist page on spotify, display artist name-->
-			<a class="btn btn-light" role="button" target="_blank">Open ??? on Spotify</a>
+			<a class="btn btn-light" role="button" [href]="artist.url" target="_blank">Open on Spotify
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right pb-1" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+					<path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+				</svg>
+			</a>
 		</p>
 	</div>
-	<div class="col-2">
-		<h3>Genres</h3>
-		<ul>
-			<!--TODO: loop over artist's genres and display them-->
-			<li>???</li>
+	<hr class="divider">
+		
+	<!-- genres -->
+	<div class="d-flex align-items-center my-4">
+		<h3 class="my-0">Genres</h3>
+		<ul class="d-flex align-items-center my-0">
+			<li *ngFor="let genre of artist.genres" class="btn btn-sm unclickable mx-2">{{genre}}</li>
 		</ul>
-		<p>
-		</p>
 	</div>
-	<div class="col-4">
-		<!--TODO: display artist name-->
-		<h3>???'s Top Tracks</h3>
-		<!--TODO: display the artist's top tracks-->
+
+	<!-- track list -->
+	<div class="my-4">
+		<h3>{{artist.name}}'s Top Tracks</h3>
+		<app-track-list [tracks]="topTracks"></app-track-list>
+	</div>
+
+	<div class="row my-4">
+		<div class="col-6">
+			<h3 class="text-center mt-2">{{artist.name}}'s Albums</h3>
+			<app-carousel [carouselId]="'artistAlbumsCarousel'" [resources]="albums"></app-carousel>
+		</div>
+		<div class="col-6">
+			<h3 class="text-center mt-2">Similar Artists</h3>
+			<app-carousel [carouselId]="'relatedArtistsCarousel'" [resources]="relatedArtists"></app-carousel>
+		</div>
+	
 	</div>
 </div>
 
-<div *ngIf="artist" class="row">
-	<div class="col-6">
-		<!--TODO: display artist name-->
-		<h3>???'s Albums</h3>
-		<!--TODO: Display a carousel component for the artist's albums. Bind carousel's resources and give it a static carouselId.-->
-	</div>
-	<div class="col-6">
-		<h3>Similar Artists</h3>
-		<!--TODO: Display a carousel component for similar artists. Bind carousel's resources and give it a static carouselId.-->
-	</div>
 
+
+<div *ngIf="!artist" >
+	<h3>Artist not found.</h3>
 </div>

@@ -1,10 +1,15 @@
 .progress {
-	margin: 10px;
-	height: 20px;
+	margin: 1em;
+	min-height: 3em;
 	overflow: visible;
 }
 
 .progress-bar .progress-bar-text {
   position: absolute;
-  text-shadow: 0px 0px 4px #444;
+  text-shadow: 0px 0px 4px #202020;
+	padding-left: 1em;
+}
+
+.feature-name {
+	min-width: 15vw;
 }

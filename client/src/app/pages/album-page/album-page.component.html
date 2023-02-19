@@ -1,21 +1,45 @@
-<div *ngIf="album" class="row">
-	<div class="col-6">
-		<!--TODO: populate with album name-->
-		<h1>???</h1>
-		<!--TODO: set src to album image URL-->
-		<img id="albumImg">
-		<!--TODO: loop over album artists-->
+<div *ngIf="album" class="mx-4">
+	<div class="d-flex justify-content-between align-items-center my-4">
+		<div class="d-flex align-items-center">
+			<!--TODO: populate with artist image URL-->
+			<img id="albumImg" class="album-pic mr-4" [src]="album.imageURL">
+			<!--TODO: populate with artist name-->
+			<h1 class="album-name">{{album.name}}</h1>
+		</div>
 		<p>
-			<!--TODO: link to artist page, display artist name-->
-			Artist: <a>???</a>
-		</p>
-		<p>
-			<!--TODO: link to album page on spotify, display album name-->
-			<a class="btn btn-light" role="button" target="_blank" >Open ??? on Spotify</a>
+			<!--TODO: link to artist page on spotify, display artist name-->
+			<a class="btn btn-light" role="button" target="_blank" [href]="album.url">
+				Open on Spotify
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-box-arrow-up-right pb-1" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+					<path fill-rule="evenodd"
+						d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+				</svg>
+			</a>
 		</p>
 	</div>
-	<div class="col-6">
+	<hr class="divider">
+
+	<div class="d-flex align-items-center my-4">
+		<h3 class="mr-4 my-0">Artist{{album.artists.length > 1 ? 's' : ''}}</h3>
+		<div class="d-flex align-items-center my-0">
+			<span *ngFor="let artist of album.artists">
+				<!--TODO: link to artist page, display artist name-->
+				<a [href]="'/artist/' + artist.id" class="btn mx-2">{{artist.name}}</a>
+			</span>
+		</div>
+
+	</div>
+
+	<div class="my-4">
 		<h3>Album Tracks</h3>
 		<!--TODO: display the track list for the album. Hide the artist and album columns because they are redundant on this page.-->
+		<app-track-list [tracks]="tracks" [hideArtist]="true" [hideAlbum]="true"></app-track-list>
 	</div>
+</div>
+
+<div *ngIf="!album">
+	<h3>Album not found.</h3>
 </div>
